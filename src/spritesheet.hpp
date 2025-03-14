@@ -26,6 +26,8 @@ enum Doodle {
     RIGHT,
     LEFTJUMP,
     RIGHTJUMP,
+    LEFTFLY,
+    RIGHTFLY,
 };
 
 enum Button {
@@ -60,7 +62,7 @@ enum Enemy {
     UFO_ON,
 };
 
-extern const Tile doodle[4];
+extern const Tile doodle[6];
 extern const Tile button[5];
 
 extern const Tile platform[6];
