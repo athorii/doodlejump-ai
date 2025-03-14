@@ -25,13 +25,10 @@ VPATH = $(PATH_SRC):\
 		$(PATH_SRC)/items
 
 FILES = main.cpp RSDL/rsdl.cpp system.cpp input_manager.cpp sequence_manager.cpp spritesheet.cpp utils/calc.cpp game_object.cpp doodle.cpp button.cpp menu_ufo.cpp \
-		scenes/scene.cpp scenes/menu_scene.cpp scenes/game_scene.cpp scenes/pause_scene.cpp scenes/gameover_scene.cpp \
-		platforms/platform_normal.cpp platforms/platform_breakable.cpp platforms/platform_movable.cpp \
-		enemies/enemy_normal.cpp enemies/enemy_soucoupe.cpp enemies/enemy_hole.cpp \
-		items/spring.cpp items/hat.cpp
-		enemies/enemy_normal.cpp enemies/enemy_soucoupe.cpp \
-		items/spring.cpp items/hat.cpp platforms/platform_vanishing.cpp
-
+        scenes/scene.cpp scenes/menu_scene.cpp scenes/game_scene.cpp scenes/pause_scene.cpp scenes/gameover_scene.cpp \
+        platforms/platform_normal.cpp platforms/platform_breakable.cpp platforms/platform_movable.cpp platforms/platform_vanishing.cpp \
+        enemies/enemy_normal.cpp enemies/enemy_soucoupe.cpp enemies/enemy_hole.cpp \
+        items/spring.cpp items/hat.cpp
 
 FILES_OBJ = $(patsubst %, $(PATH_OBJ)/%.o, $(basename $(notdir $(FILES))))
 FILES_DEP = $(patsubst %, $(PATH_DEP)/%.d, $(basename $(notdir $(FILES))))
