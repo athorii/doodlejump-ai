@@ -37,6 +37,7 @@ private:
         base,
         hit,
         withHat,
+        hole,
         dead
     } state_ = State::base;
 

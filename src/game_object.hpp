@@ -26,6 +26,7 @@ public:
         enemySoucoupe,
         spring,
         hat,
+        enemyHole,
         none
     };
 

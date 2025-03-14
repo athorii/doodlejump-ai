@@ -123,6 +123,11 @@ GameObject::CollisionType Doodle::collide(GameObject* col, Window* win) {
                 win->play_sound_effect(consts::DOODLE_HIT_BY_ENEMY_SOUND);
             }
             break;
+        case CollisionType::enemyHole:
+            state_ = State::hole;
+            vy_ = -0.04 * consts::DOODLE_VY;
+            win->play_sound_effect(consts::DOODLE_HIT_BY_ENEMY_SOUND);
+            break;
         default: break;
         }
     }

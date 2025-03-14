@@ -57,7 +57,7 @@ enum Item {
 
 enum Enemy {
     NORM,
-
+    HOLE,
     UFO_OFF,
     UFO_ON,
 };
@@ -67,7 +67,7 @@ extern const Tile button[5];
 
 extern const Tile platform[6];
 extern const Tile item[4];
-extern const Tile enemy[3];
+extern const Tile enemy[4];
 
 } // namespace sprite
 

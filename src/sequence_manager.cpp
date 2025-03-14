@@ -5,6 +5,7 @@
 #include "consts.hpp"
 #include "enemies/enemy_normal.hpp"
 #include "enemies/enemy_soucoupe.hpp"
+#include "enemies/enemy_hole.hpp"
 #include "items/spring.hpp"
 #include "items/hat.hpp" // Ensure this header file defines the Hat class
 #include "platforms/platform_breakable.hpp"
@@ -113,6 +114,12 @@ std::vector<GameObject*> SequenceManager::Sequence::toObject() const {
             height = sprite::enemy[sprite::Enemy::UFO_OFF].h;
             seqObjs.push_back(new EnemySoucoupe(RectangleF(getTopLeftFromBottomMiddle(e.x, e.y, width, height), width, height),
                                                 RectangleF(10, 10, width - 20, height - 20)));
+            break;
+        case GameObject::CollisionType::enemyHole:
+            width = sprite::enemy[sprite::Enemy::HOLE].w;
+            height = sprite::enemy[sprite::Enemy::HOLE].h;
+            seqObjs.push_back(new EnemyHole(RectangleF(getTopLeftFromBottomMiddle(e.x, e.y, width, height), width, height),
+                                            RectangleF(10, 10, width - 20, height - 20)));
             break;
         default: break;
         }
