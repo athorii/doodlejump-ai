@@ -1,13 +1,13 @@
 5
 
 0 -1 1250 23
-180 0 platform
-275 60 platform
-80 120 platform
-130 190 platform
-70 250 platform
-270 375 bplatform
-140 310 platform
+180 0 vplatform
+275 60 vplatform
+80 120 vplatform
+130 190 vplatform
+70 250 vplatform
+270 375 vplatform
+140 310 vplatform
 350 440 platform
 360 458 hat
 320 500 mplatform

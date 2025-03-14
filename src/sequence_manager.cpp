@@ -8,9 +8,11 @@
 #include "enemies/enemy_hole.hpp"
 #include "items/spring.hpp"
 #include "items/hat.hpp" // Ensure this header file defines the Hat class
+#include "items/spring.hpp"
 #include "platforms/platform_breakable.hpp"
 #include "platforms/platform_movable.hpp"
 #include "platforms/platform_normal.hpp"
+#include "platforms/platform_vanishing.hpp"
 #include "spritesheet.hpp"
 #include "utils/point_f.hpp"
 #include "utils/rectangle_f.hpp"
@@ -93,6 +95,12 @@ std::vector<GameObject*> SequenceManager::Sequence::toObject() const {
             height = sprite::platform[sprite::Platform::BREAKABLE].h;
             seqObjs.push_back(new PlatformBreakable(RectangleF(getTopLeftFromBottomMiddle(e.x, e.y, width, height), width, height)));
             break;
+        case GameObject::CollisionType::pVanishing:
+            width = sprite::platform[sprite::Platform::BREAKABLE].w;
+            height = sprite::platform[sprite::Platform::BREAKABLE].h;
+            seqObjs.push_back(new PlatformVanishing(RectangleF(getTopLeftFromBottomMiddle(e.x, e.y, width, height), width, height)));
+            break;
+        
         case GameObject::CollisionType::spring:
             width = sprite::item[sprite::Item::SPRING].w;
             height = sprite::item[sprite::Item::SPRING].h;

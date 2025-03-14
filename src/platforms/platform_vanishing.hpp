@@ -1,10 +1,10 @@
-#ifndef PLATFORM_BREAKABLE_HPP_INCLUDE
-#define PLATFORM_BREAKABLE_HPP_INCLUDE
+#ifndef PLATFORM_VANISHING_HPP_INCLUDE
+#define PLATFORM_VANISHING_HPP_INCLUDE
 
 #include "../spritesheet.hpp"
 #include "platform.hpp"
 
-class PlatformBreakable : public Platform {
+class PlatformVanishing : public Platform {
 public:
     using Platform::Platform;
 
@@ -17,12 +17,12 @@ private:
 
     enum class State {
         base,
-        broke,
+        vanishing,
         vanished
     } state_ = State::base;
 
     int disapearAnimationTimer = 0;
-    sprite::Platform currSprite_ = sprite::Platform::BREAKABLE;
+    sprite::Platform currSprite_ = sprite::Platform::VANISHING;
 };
 
-#endif //PLATFORM_BREAKABLE_HPP_INCLUDE
+#endif //PLATFORM_VANISHING_HPP_INCLUDE

@@ -22,6 +22,7 @@ public:
         pNormal,
         pBreakable,
         pMovable,
+        pVanishing,
         enemyNormal,
         enemySoucoupe,
         spring,

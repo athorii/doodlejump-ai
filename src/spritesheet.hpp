@@ -46,6 +46,11 @@ enum Platform {
     BREAKABLE_B1,
     BREAKABLE_B2,
     BREAKABLE_B3,
+
+    VANISHING,
+    VANISHING_B1,
+    VANISHING_B2,
+    VANISHING_B3,
 };
 
 enum Item {
@@ -65,7 +70,7 @@ enum Enemy {
 extern const Tile doodle[6];
 extern const Tile button[5];
 
-extern const Tile platform[6];
+extern const Tile platform[10];
 extern const Tile item[4];
 extern const Tile enemy[4];
 

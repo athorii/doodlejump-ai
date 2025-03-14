@@ -48,7 +48,7 @@ void Doodle::update(unsigned deltaTime, Window* win) {
 }
 
 void Doodle::updateInputs(InputManager* inputMan) {
-    if (state_ != State::base && state_!=State::withHat) return;
+    if (state_ != State::base && state_ != State::withHat) return;
 
     int direction = inputMan->isKeyPressed(InputKeys::right) - inputMan->isKeyPressed(InputKeys::left);
 
@@ -95,6 +95,14 @@ GameObject::CollisionType Doodle::collide(GameObject* col, Window* win) {
                 col->collide(this, win);
             }
             break;
+        case CollisionType::pVanishing:
+            if (hasHitFromAbove(col)) {
+                col->collide(this, win);
+                vy_ = consts::DOODLE_VY;
+                box_.y = col->getY() - col->getHeight() - box_.h;
+                win->play_sound_effect(consts::DOODLE_JUMP_SOUND);
+            }
+            break;
         case CollisionType::enemyNormal:
             if (hasHitFromAbove(col)) {
                 col->collide(this, win);
@@ -109,7 +117,7 @@ GameObject::CollisionType Doodle::collide(GameObject* col, Window* win) {
                 win->play_sound_effect(consts::DOODLE_HIT_BY_ENEMY_SOUND);
             }
             break;
-            case CollisionType::enemySoucoupe:
+        case CollisionType::enemySoucoupe:
             if (hasHitFromAbove(col)) {
                 col->collide(this, win);
                 vy_ = consts::DOODLE_VY;
@@ -152,9 +160,10 @@ bool Doodle::isOutOfScreenBottom(const Window* win) const {
 }
 
 void Doodle::setSpriteState() {
-    if(state_ == State::withHat) {
+    if (state_ == State::withHat) {
         spriteState_ = charState::RIGHTFLY;
-    } else {
+    }
+    else {
         if (spriteState_ == charState::RIGHT || spriteState_ == charState::RIGHTJUMP) {
             spriteState_ = (vy_ > 0.5 * consts::DOODLE_VY) ? charState::RIGHTJUMP : charState::RIGHT;
         }

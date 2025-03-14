@@ -41,6 +41,7 @@ private:
         {"platform", GameObject::CollisionType::pNormal},
         {"mplatform", GameObject::CollisionType::pMovable},
         {"bplatform", GameObject::CollisionType::pBreakable},
+        {"vplatform", GameObject::CollisionType::pVanishing},
         {"spring", GameObject::CollisionType::spring},
         {"hat", GameObject::CollisionType::hat},
         {"enemy", GameObject::CollisionType::enemyNormal},

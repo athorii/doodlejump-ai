@@ -5,6 +5,7 @@
 #include "platforms/platform_breakable.hpp"
 #include "platforms/platform_movable.hpp"
 #include "platforms/platform_normal.hpp"
+#include "platforms/platform_vanishing.hpp"
 #include "spritesheet.hpp"
 
 System::System(Window* win_)

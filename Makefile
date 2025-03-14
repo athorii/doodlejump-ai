@@ -29,6 +29,8 @@ FILES = main.cpp RSDL/rsdl.cpp system.cpp input_manager.cpp sequence_manager.cpp
 		platforms/platform_normal.cpp platforms/platform_breakable.cpp platforms/platform_movable.cpp \
 		enemies/enemy_normal.cpp enemies/enemy_soucoupe.cpp enemies/enemy_hole.cpp \
 		items/spring.cpp items/hat.cpp
+		enemies/enemy_normal.cpp enemies/enemy_soucoupe.cpp \
+		items/spring.cpp items/hat.cpp platforms/platform_vanishing.cpp
 
 
 FILES_OBJ = $(patsubst %, $(PATH_OBJ)/%.o, $(basename $(notdir $(FILES))))
