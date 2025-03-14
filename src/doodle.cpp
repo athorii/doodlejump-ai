@@ -13,7 +13,7 @@ void Doodle::draw(Window* win, const PointF& offset) const {
 
 void Doodle::update(unsigned deltaTime, Window* win) {
     if (isFlying_) {
-        vy_ = consts::DOODLE_VY_HAT;
+        vy_ = consts::DOODLE_VY_HAT * (1 - flyingTime_ / 3000.0);
         box_.x += vx_ * deltaTime;
         box_.y -= vy_ * deltaTime;
         flyingTime_ -= deltaTime;
@@ -87,7 +87,7 @@ GameObject::CollisionType Doodle::collide(GameObject* col, Window* win) {
                 this->state_ = State::withHat;
                 vy_ = consts::DOODLE_VY_HAT;
                 isFlying_ = true;
-                flyingTime_ = 7000; // 7 seconds in milliseconds
+                flyingTime_ = 3000; // 5 seconds in milliseconds
             }
             break;
         case CollisionType::pBreakable:
@@ -129,11 +129,15 @@ bool Doodle::isOutOfScreenBottom(const Window* win) const {
 }
 
 void Doodle::setSpriteState() {
-    if (spriteState_ == charState::RIGHT || spriteState_ == charState::RIGHTJUMP) {
-        spriteState_ = (vy_ > 0.5 * consts::DOODLE_VY) ? charState::RIGHTJUMP : charState::RIGHT;
-    }
-    else {
-        spriteState_ = (vy_ > 0.5 * consts::DOODLE_VY) ? charState::LEFTJUMP : charState::LEFT;
+    if(state_ == State::withHat) {
+        spriteState_ = charState::RIGHTFLY;
+    } else {
+        if (spriteState_ == charState::RIGHT || spriteState_ == charState::RIGHTJUMP) {
+            spriteState_ = (vy_ > 0.5 * consts::DOODLE_VY) ? charState::RIGHTJUMP : charState::RIGHT;
+        }
+        else {
+            spriteState_ = (vy_ > 0.5 * consts::DOODLE_VY) ? charState::LEFTJUMP : charState::LEFT;
+        }
     }
 }
 
