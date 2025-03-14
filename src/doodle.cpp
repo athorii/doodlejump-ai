@@ -109,12 +109,30 @@ GameObject::CollisionType Doodle::collide(GameObject* col, Window* win) {
                 win->play_sound_effect(consts::DOODLE_HIT_BY_ENEMY_SOUND);
             }
             break;
+            case CollisionType::enemySoucoupe:
+            if (hasHitFromAbove(col)) {
+                col->collide(this, win);
+                vy_ = consts::DOODLE_VY;
+                win->play_sound_effect(consts::DOODLE_JUMP_ON_ENEMY_SOUND);
+            }
+            else {
+                state_ = State::hit;
+                if (vy_ > 0) {
+                    vy_ = -0.04 * consts::DOODLE_VY;
+                }
+                win->play_sound_effect(consts::DOODLE_HIT_BY_ENEMY_SOUND);
+            }
+            break;
         default: break;
         }
     }
     else if (state_ == State::withHat) {
         switch (col->collide(nullptr, win)) {
         case CollisionType::enemyNormal:
+            col->collide(this, win);
+            win->play_sound_effect(consts::DOODLE_JUMP_ON_ENEMY_SOUND);
+            break;
+        case CollisionType::enemySoucoupe:
             col->collide(this, win);
             win->play_sound_effect(consts::DOODLE_JUMP_ON_ENEMY_SOUND);
             break;

@@ -42,7 +42,7 @@
 270 810 platform
 200 875 mplatform
 230 940 platform
-170 1000 enemy
+170 1000 soucoupe
 265 1000 platform
 360 1060 platform
 160 1125 mplatform
@@ -61,7 +61,7 @@
 40 500 platform
 150 560 platform
 135 578 hat
-325 625 enemy
+325 625 soucoupe
 105 690 platform
 147 750 mplatform
 300 845 platform
@@ -84,14 +84,14 @@
 120 445 platform
 220 500 platform
 145 565 platform
-305 625 enemy
+305 625 soucoupe
 170 625 platform
 100 750 mplatform
 65 810 platform
-300 815 enemy
+300 815 soucoupe
 155 875 platform
 175 960 mplatform
-70 1000 enemy
+70 1000 soucoupe
 240 1060 platform
 300 1125 bplatform
 130 1188 mplatform
@@ -114,7 +114,7 @@
 140 800 mplatform
 250 875 platform
 310 940 platform
-165 1000 enemy
+165 1000 soucoupe
 282 1000 platform
 158 1063 mplatform
 115 1125 platform

@@ -23,6 +23,7 @@ public:
         pBreakable,
         pMovable,
         enemyNormal,
+        enemySoucoupe,
         spring,
         hat,
         none

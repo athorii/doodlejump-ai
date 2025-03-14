@@ -44,6 +44,7 @@ private:
         {"spring", GameObject::CollisionType::spring},
         {"hat", GameObject::CollisionType::hat},
         {"enemy", GameObject::CollisionType::enemyNormal},
+        {"soucoupe", GameObject::CollisionType::enemySoucoupe}
     };
 };
 

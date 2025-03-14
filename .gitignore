@@ -4,3 +4,7 @@ build/
 CMakeFiles/
 .vscode/
 Makefile
+build/
+buildbin/
+buildobj/
+buildobjdep/
