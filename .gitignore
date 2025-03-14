@@ -1,0 +1,6 @@
+bin/
+dependencies/
+build/
+CMakeFiles/
+.vscode/
+Makefile
