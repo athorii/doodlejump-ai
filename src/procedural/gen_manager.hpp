@@ -13,7 +13,7 @@ class GenManager{
     public:
         GenManager() = default;
 
-        void readGeneratedEntities(int numOfEntities);
+        void readGeneratedEntities(int numOfEntities, int score);
 
 
         struct Entity {

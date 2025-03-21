@@ -25,7 +25,7 @@ std::vector<GameObject*> GameSceneNoSeq::randomNoSeq() {
   static std::mt19937 gen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
   // Lire une nouvelle séquence à chaque appel
-  gm_.readGeneratedEntities(1);
+  gm_.readGeneratedEntities(1, getScoreHeight());
 
   // Prendre la dernière séquence générée
   const auto& newSeq = gm_.subSeqs.back();
