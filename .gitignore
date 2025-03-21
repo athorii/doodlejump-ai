@@ -3,8 +3,8 @@ dependencies/
 build/
 CMakeFiles/
 .vscode/
-Makefile
 build/
 buildbin/
 buildobj/
 buildobjdep/
+output/doodle_jump.exe
