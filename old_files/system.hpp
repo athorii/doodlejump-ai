@@ -4,12 +4,11 @@
 #include <vector>
 
 #include "input_manager.hpp"
-//#include "scenes/game_scene.hpp"
+#include "scenes/game_scene.hpp"
 #include "scenes/gameover_scene.hpp"
 #include "scenes/menu_scene.hpp"
 #include "scenes/pause_scene.hpp"
 #include "scenes/scene.hpp"
-#include "scenes/game_scene_noseq.hpp" // Ensure this file defines GameSceneNoSeq
 
 class System {
 public:
@@ -39,9 +38,8 @@ private:
     std::vector<Scene*> scenes_;
     MenuScene menuScene_;
     PauseScene pauseScene_;
-    //GameScene* gameScene_ = nullptr;
-    GameSceneNoSeq* gameScene_ = nullptr;
+    GameScene* gameScene_ = nullptr;
     GameoverScene* gameoverScene_ = nullptr;
 };
 
-#endif // SYSTEM_HPP_INCLUDE
+#endif //SYSTEM_HPP_INCLUDE

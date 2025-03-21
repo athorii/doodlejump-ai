@@ -5,6 +5,7 @@
 #include "platforms/platform_breakable.hpp"
 #include "platforms/platform_movable.hpp"
 #include "platforms/platform_normal.hpp"
+#include "platforms/platform_vanishing.hpp"
 #include "spritesheet.hpp"
 
 System::System(Window* win_)
@@ -107,6 +108,6 @@ void System::changeScene(SceneState to) {
 void System::makeGameScene() {
     int doodleWidth = sprite::doodle[sprite::Doodle::LEFT].w;
     int doodleHeight = sprite::doodle[sprite::Doodle::LEFT].h;
-    gameScene_ = new GameSceneNoSeq(&inputMan_, //it was GameScene before
+    gameScene_ = new GameScene(&inputMan_,
                                RectangleF(win_->get_width() / 2 - doodleWidth / 2, win_->get_height() - doodleHeight, doodleWidth, doodleHeight));
 }
