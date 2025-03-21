@@ -30,7 +30,6 @@ GenManager::SubSeq::SubSeq(const std::vector<GenManager::Entity>& entities, int 
 
 
 void GenManager::readGeneratedEntities(int numOfEntities,int score) {
-    int lastTotalHeight = 0;
     for (int i = 0; i < numOfEntities; i++) {
         auto entities = generateEntities(ENTITY_NUMBER, consts::WIN_WIDTH, consts::WIN_HEIGHT, 70, score);
         
@@ -40,7 +39,6 @@ void GenManager::readGeneratedEntities(int numOfEntities,int score) {
             totalHeight = std::max(totalHeight, entity.y);
         }
         subSeqs.emplace_back(entities, totalHeight);
-        lastTotalHeight = totalHeight;  // Mise à jour de la hauteur de référence pour la prochaine séquence
     }
 
 }
@@ -60,14 +58,14 @@ std::vector<GenManager::Entity> GenManager::generateEntities(int numOfEntities, 
     int maxEnemies = (score >= 1000) ? 2 : 1;
 
     int minXSpacing = 40 + (score / 500) * 10;
-    int maxPlatforms = numOfEntities - (score / 3000);
+    int maxPlatforms = numOfEntities ;//- (score / 3000);
     maxPlatforms = std::max(3, maxPlatforms);
 
     // Ensure at least one of each platform type
     std::vector<GameObject::CollisionType> requiredTypes = {
         GameObject::CollisionType::pNormal,
         GameObject::CollisionType::pMovable,
-        GameObject::CollisionType::pBreakable
+        //GameObject::CollisionType::pBreakable
     };
 
     for (int i = 0; i < maxPlatforms; i++) {
@@ -77,7 +75,20 @@ std::vector<GenManager::Entity> GenManager::generateEntities(int numOfEntities, 
             x = std::clamp(x, 0, maxX);
         }
 
-        int y = lastPlatformY + std::uniform_int_distribution<int>(doodleJumpHeight / 3, doodleJumpHeight)(gen);
+        int minYGap = doodleJumpHeight + (score / 100); // Minimum gap increases with score
+        int maxYGap = doodleJumpHeight-20 + (score / 50);      // Maximum gap increases with score
+        
+        if (maxYGap - minYGap <= 1) {
+            minYGap = maxYGap - 1; // Fixer minYGap à maxYGap - 1
+        }
+        
+        int y = lastPlatformY + std::uniform_int_distribution<int>(minYGap, maxYGap)(gen);
+
+        if (i > 0 && entities.back().type != GameObject::CollisionType::pBreakable) {
+            if (y <= entities.back().y + doodleJumpHeight / 2) {
+                y = entities.back().y + doodleJumpHeight / 2 + 1; // Ensure minimum gap is respected
+            }
+        }
 
         GameObject::CollisionType type;
         if (static_cast<size_t>(i) < requiredTypes.size()) {
@@ -86,32 +97,31 @@ std::vector<GenManager::Entity> GenManager::generateEntities(int numOfEntities, 
             type = GameObject::CollisionType::pNormal;
             if (i > 0 && typeDist(gen) == 1) {
                 type = GameObject::CollisionType::pMovable;
-            } else if (i > 1 && typeDist(gen) == 2) {
+            } /*else if (i > 1 && typeDist(gen) == 2) {
                 type = GameObject::CollisionType::pBreakable;
-            }
+            }*/
         }
 
         entities.emplace_back(x, y, type);
-        if(type != GameObject::CollisionType::pBreakable){
+        if (type != GameObject::CollisionType::pBreakable) {
             lastPlatformY = y;
+        } else if (!entities.empty() && entities.back().type != GameObject::CollisionType::pBreakable) {
+            // Si la plateforme actuelle est cassable, utilisez la dernière plateforme valide
+            lastPlatformY = entities.back().y;
         }
     }
-    printf("entities size %d\n", entities.size());
-    printf("ennemy count %d\n", enemyCount);
-    printf("max ennemy %d\n", maxEnemies);
-    printf("last platform y %d\n", lastPlatformY);
-    printf("max platforms %d\n", maxPlatforms);
-    printf("ennemy chance %d\n", enemyChance(gen));
+
+    //WIP
 
     for (size_t i = 0; i < entities.size(); i++) {
-        if (enemyCount <= maxEnemies /*&& enemyChance(gen) == 1*/ && lastPlatformY >= 1000) {
+        /*if (enemyCount <= maxEnemies && enemyChance(gen) == 1 && score >= 1000) {
             int enemyX = std::clamp(entities[i].x + std::uniform_int_distribution<int>(-50, 50)(gen), 0, maxX);
             int enemyY = entities[i].y - doodleJumpHeight / 4;
             entities.emplace_back(enemyX, enemyY, GameObject::CollisionType::enemyNormal);
             enemyCount++;
             printf("enemy at %d %d\n", enemyX, enemyY);
         }
-        /*
+        
         if (i > 0 && (entities[i].y - entities[i - 1].y > doodleJumpHeight / 2)) {
             int springX = entities[i - 1].x;
             int springY = entities[i - 1].y + 20;
